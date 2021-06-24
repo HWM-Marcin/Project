@@ -7,7 +7,9 @@ interface Props {
 export default function Layout(props: Props): ReactElement {
     return (
         <div className="Layout">
-            {props.children}
+            <div className="container">
+                {props.children}
+            </div>
         </div>
     )
 }
