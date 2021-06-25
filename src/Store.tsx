@@ -6,13 +6,15 @@ import PageConfig from "./types/PageConfig"
 export interface Store {
     pageConfig: PageConfig,
     favorites: Movie[]
+
 }
 
 export const initialStore: Store = {
     pageConfig: {
-        image_url: "https://image.tmdb.org/t/p"
+        image_url: "https://image.tmdb.org/t/p",
+        certificationArea: "DE"
     },
-    favorites: []
+    favorites: [],
 }
 
 interface addToFavorites {

@@ -4,8 +4,8 @@
 @import "../node_modules/bootstrap/scss/mixins";
 
 // Your variable overrides
-$body-bg: #000;
-$body-color: #333;
+$body-bg: #f7f7f7;
+//$body-color: #333;
 
 $theme-colors: (
   
@@ -20,7 +20,7 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1440px,
-  xxxl: 1600px
+//  xxxl: 1600px
 );
 
 $container-max-widths: (
@@ -32,13 +32,21 @@ $container-max-widths: (
   lg: 992px,
   xl: 1200px,
   xxl: 1440px,
-  xxxl: 1600px
+//  xxxl: 1600px
 );
 
-// ALL @import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 // Optional
-@import "../node_modules/bootstrap/scss/root";
+/* @import "../node_modules/bootstrap/scss/root";
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
 @import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/spacing"; */
+
+// Other
+@import "./assets/css/styles.e-commerce.css";
+@import "./assets/vendor/icon-line-pro/style.css";
+@import "./assets/css/custom";
