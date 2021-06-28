@@ -14,7 +14,11 @@ export default function PopularList(): ReactElement {
 
     return (
         <div className="Popular">
-            {movies.results.map(result => <ResultListItem key={result.id} result={result} />)}
+            <div className="row">
+                {movies.results.map(result =>
+                    <ResultListItem key={result.id} result={result} />
+                )}
+            </div>
         </div>
     )
 }

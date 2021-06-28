@@ -1,3 +1,7 @@
+// Fonts
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
 // Required
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
@@ -5,11 +9,11 @@
 
 // Your variable overrides
 $body-bg: #f7f7f7;
+$font-family-base: "Roboto", sans-serif;
+$line-height-base: 1.6;
 //$body-color: #333;
 
-$theme-colors: (
-  
-);
+$theme-colors: ();
 
 $grid-breakpoints: (
   xxxs: 0,
@@ -20,7 +24,7 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1440px,
-//  xxxl: 1600px
+  //  xxxl: 1600px
 );
 
 $container-max-widths: (
@@ -32,7 +36,7 @@ $container-max-widths: (
   lg: 992px,
   xl: 1200px,
   xxl: 1440px,
-//  xxxl: 1600px
+  //  xxxl: 1600px
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
@@ -47,6 +51,4 @@ $container-max-widths: (
 @import "../node_modules/bootstrap/scss/spacing"; */
 
 // Other
-@import "./assets/css/styles.e-commerce.css";
-@import "./assets/vendor/icon-line-pro/style.css";
 @import "./assets/css/custom";

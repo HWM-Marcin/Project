@@ -3,11 +3,12 @@ import "./Panel.scss"
 
 interface Props {
     children?: ReactChild | ReactChild[]
+    className?: string
 }
 
 export default function Panel(props: Props): ReactElement {
     return (
-        <div className="Panel">
+        <div className={`Panel ${props.className}`}>
             {props.children}
         </div>
     )

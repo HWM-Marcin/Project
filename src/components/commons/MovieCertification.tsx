@@ -10,32 +10,39 @@ interface Props {
     movieId: number
 }
 
+
 export default function MovieCertification(props: Props): ReactElement | null {
 
-    const { dispatch, store } = useStore()
+
+    const { dispatch, store } = useStore();
+    const choosenLanguage = store.pageConfig.certificationArea;
     const [releaseDates, setReleaseDates] = useMovieApi<ReleaseDates>("get", `movie/${props.movieId}/release_dates`);
     const [certificationList, setcertificationList] = useMovieApi<Certifications>("get", `/certification/movie/list`);
 
-    if (!releaseDates) {
-        return null
-    }
+    if (!releaseDates || !releaseDates.results) return null;
 
-    const certificationType = releaseDates.results.filter((e) => e.iso_3166_1 === store.pageConfig.certificationArea)[0].release_dates[0].type;
+    const certificationTypes = releaseDates.results.filter(e => e.iso_3166_1 === choosenLanguage);
 
-    if (!certificationList) {
-        return null
-    }
+    if (certificationTypes.length === 0) return null;
 
-    const movieCertification = certificationList.certifications.DE?.filter(e => e.order === certificationType)
+    const movieCertificationType = releaseDates.results.filter((e) => e.iso_3166_1 === choosenLanguage)[0].release_dates[0].type;
 
-    if (!movieCertification) {
-        return null
-    }
+    if (!certificationList) return null;
+
+    const movieCertifications = certificationList.certifications.DE?.filter(e => e.order === movieCertificationType)
+
+    if (!movieCertifications || !movieCertifications[0]) return null;
 
     return (
-        <span className="MovieCertification" data-tip={movieCertification[0].meaning}>
-            {movieCertification[0].certification}
+        <span className="MovieCertification ml-auto" data-tip={movieCertifications[0].meaning}>
+            FSK {movieCertifications[0].certification}
             <ReactTooltip effect="solid" place="bottom" />
         </span>
+
     )
 }
+
+/* <span className="MovieCertification ml-auto" data-tip={movieCertifications[0].meaning}>
+            FSK {movieCertifications[0].certification}
+            <ReactTooltip effect="solid" place="bottom" />
+        </span> */

@@ -1,6 +1,12 @@
 import React, { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
+import logo from "../assets/img/logo/logo.svg";
+import { useStore } from '../Store';
 
 export default function Navigation(): ReactElement {
+
+    const { dispatch, store } = useStore();
+
     return (
         <div className="Navigation">
             <header id="js-header" className="u-header u-header--static u-shadow-v19">
@@ -21,24 +27,28 @@ export default function Navigation(): ReactElement {
                                 </span>
                             </button>
 
-                            <a className="navbar-brand" href="home-page-1.html">
-                                <img src="assets/img/logo/logo-1.png" alt="Image Description" />
-                            </a>
+                            <Link to="/" className="navbar-brand">
+                                <img className="App-logo" src={logo} alt="Logo" height="50" />
+                                <span>TheMovieDB</span>
+                            </Link>
 
                             <div id="navBar" className="collapse navbar-collapse align-items-center flex-sm-row g-pt-15 g-pt-0--lg">
                                 <ul className="navbar-nav ml-auto">
                                     <li className="nav-item g-ml-15--xl">
-                                        <a className="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="../index.html">Main</a>
+                                        <Link to="/" className="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20">Beliebt</Link>
                                     </li>
                                     <li className="nav-item g-ml-10--lg">
-                                        <a className="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20" href="../index.html">Main</a>
+                                        <Link to="/favorites" className="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20">
+                                            Favoriten
+                                            <span className="u-label g-bg-primary g-rounded-20 g-px-8 g-ml-10">{store.favorites.length}</span>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
                 </div>
-            </header>
-        </div>
+            </header >
+        </div >
     )
 }
