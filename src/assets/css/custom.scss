@@ -49,3 +49,10 @@
 .aspect-ratio-2-3 {
     padding-top: 150%;
 }
+
+.line-clamp-5 {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

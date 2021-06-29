@@ -1,7 +1,6 @@
 import React, { ReactElement, useReducer } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { initialStore, reducer, StoreProvider } from '../Store';
-import "./App.scss";
 import Layout from './Layout';
 import Navigation from './Navigation';
 import Routes from './Routes';

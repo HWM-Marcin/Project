@@ -3,14 +3,15 @@ import { useParams } from 'react-router';
 import useMovieApi from '../hooks/useMovieApi';
 import Movie from '../types/Movie';
 import MovieCertification from './commons/MovieCertification';
-import MovieImage from './commons/MovieImage';
 import Panel from './commons/Panel';
 import LoadingSpinner from './LoadingSpinner';
-import RatingCircle from './commons/RatingCircle';
 import Keywords from './commons/Keywords';
 import ReleaseDates from './commons/ReleaseDates';
 import { useStore } from '../Store';
 import GenreList from './commons/GenreList';
+import FavoriteButton from './commons/FavoriteButton';
+import CreditList from './commons/CreditList';
+import LoadImage from './helper/LoadImage';
 
 export default function MovieDetails(): ReactElement {
 
@@ -32,7 +33,7 @@ export default function MovieDetails(): ReactElement {
             <Panel className="g-mb-15">
                 <div className="row">
                     <div className="col-md-4 col-lg-4">
-                        <MovieImage url={movie.poster_path} size="h632" />
+                        <LoadImage url={movie.poster_path} size="h632" />
                     </div>
                     <div className="col-md-8 col-lg-8 g-px-80--lg g-mb-40 g-mb-0--md pt-5">
                         <h1 className="d-flex">{movie.title} <MovieCertification movieId={movie.id} /></h1>
@@ -67,9 +68,13 @@ export default function MovieDetails(): ReactElement {
                         <h6 className="mt-3">Keywords</h6>
                         <Keywords movieId={movie.id} />
 
-                        <button className="btn u-btn-primary" onClick={onAddToFavorites}>merken</button>
+                        <FavoriteButton movie={movie} />
                     </div>
                 </div>
+            </Panel>
+
+            <Panel>
+                <CreditList movieId={movie.id} title="Cast" />
             </Panel>
 
 

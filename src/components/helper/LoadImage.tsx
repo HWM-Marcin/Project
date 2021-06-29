@@ -5,14 +5,16 @@ type ImageSizes = "w92" | "w154" | "w185" | "w300" | "w342" | "w500" | "w500" | 
 
 interface Props {
   size: ImageSizes,
-  url: string,
+  url: string | undefined | null,
   className?: string
 }
 
 
-export default function MovieImage(props: Props): ReactElement {
+export default function LoadImage(props: Props): ReactElement | null {
 
   const { dispatch, store } = useStore()
+
+  if (!props.url) return null
 
   return (
     <img src={`${store.pageConfig.image_url}/${props.size}/${props.url}`} className={`img-fluid ${props.className}`} />

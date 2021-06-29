@@ -34,7 +34,13 @@ export type dispatchActions = React.Dispatch<Actions>
 export function reducer(store: Store, action: Actions): Store {
     switch (action.type) {
         case 'ADD_TO_FAVORITES': {
+            /* for (let i = 0; i < store.favorites.length; i++) {
+                if (store.favorites[i] === action.movie) {
+                    return store;
+                }
+            } */
             return { ...store, favorites: [...store.favorites, action.movie] };
+
         }
         case 'REMOVE_FROM_FAVORITES': {
             const index = store.favorites.map(movie => movie.id).indexOf(action.movie.id)
