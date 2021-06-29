@@ -20,7 +20,9 @@ export default function CreditListItem(props: Props): ReactElement {
             <article>
                 <div className="aspect-ratio aspect-ratio-2-3">
                     {credit.profile_path
-                        ? <LoadImage url={credit.profile_path} size={'h632'} className="rounded" />
+                        ? <Link to={`/person/${credit.id}`}>
+                            <LoadImage url={credit.profile_path} size={'h632'} className="rounded" />
+                        </Link>
                         : <img src={defaultImg} />
                     }
                 </div>

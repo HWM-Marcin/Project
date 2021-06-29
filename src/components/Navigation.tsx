@@ -29,7 +29,7 @@ export default function Navigation(): ReactElement {
 
                             <Link to="/" className="navbar-brand">
                                 <img className="App-logo" src={logo} alt="Logo" height="50" />
-                                <span>TheMovieDB</span>
+                                <span className="g-color-black">TheMovieDB+</span>
                             </Link>
 
                             <div id="navBar" className="collapse navbar-collapse align-items-center flex-sm-row g-pt-15 g-pt-0--lg">
