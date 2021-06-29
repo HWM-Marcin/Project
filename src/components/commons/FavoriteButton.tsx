@@ -3,7 +3,8 @@ import { useStore } from '../../Store';
 import Movie from '../../types/Movie';
 
 interface Props {
-    movie: Movie
+    movie: Movie,
+    className?: string
 }
 
 export default function FavoriteButton(props: Props): ReactElement | null {
@@ -33,10 +34,10 @@ export default function FavoriteButton(props: Props): ReactElement | null {
     }
 
     return (
-        <div className="FavoriteButton">
+        <div className={`FavoriteButton ${props.className ? props.className : ''}`}>
             {isAlreadyAdded()
-                ? <button className="btn u-btn-primary" onClick={e => removeFromFavorites(e)}><i className="icon-heart mr-2"></i> Film nicht mehr merken</button>
-                : <button className="btn u-btn-primary" onClick={addToFavorites}><i className="icon-heart mr-2"></i> Film merken</button>}
+                ? <button className="btn u-btn-black rounded" onClick={e => removeFromFavorites(e)}>Film gemerkt</button>
+                : <button className="btn u-btn-outline-black rounded" onClick={addToFavorites}>Film merken</button>}
         </div>
     )
 }

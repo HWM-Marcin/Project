@@ -35,8 +35,14 @@ export default function MovieDetails(): ReactElement {
                     <div className="col-md-4 col-lg-4">
                         <LoadImage url={movie.poster_path} size="h632" />
                     </div>
-                    <div className="col-md-8 col-lg-8 g-px-80--lg g-mb-40 g-mb-0--md pt-5">
-                        <h1 className="d-flex">{movie.title} <MovieCertification movieId={movie.id} /></h1>
+                    <div className="col-md-8 col-lg-8 pt-5">
+                        <div className="d-flex mb-2">
+                            <h1 className="mb-0">{movie.title}</h1>
+                            <div className="d-flex ml-auto">
+                                <MovieCertification movieId={movie.id} className="g-mt-6 mr-3" />
+                                <FavoriteButton movie={movie} className="g-mt-6" />
+                            </div>
+                        </div>
                         <GenreList movie={movie} />
                         <p>{movie.overview}</p>
                         <div className="row mt-5">
@@ -68,7 +74,7 @@ export default function MovieDetails(): ReactElement {
                         <h6 className="mt-3">Keywords</h6>
                         <Keywords movieId={movie.id} />
 
-                        <FavoriteButton movie={movie} />
+
                     </div>
                 </div>
             </Panel>

@@ -7,7 +7,8 @@ import "./MovieCertification.scss";
 import ReactTooltip from "react-tooltip";
 
 interface Props {
-    movieId: number
+    movieId: number,
+    className?: string
 }
 
 
@@ -34,10 +35,10 @@ export default function MovieCertification(props: Props): ReactElement | null {
     if (!movieCertifications || !movieCertifications[0]) return null;
 
     return (
-        <span className="MovieCertification ml-auto" data-tip={movieCertifications[0].meaning}>
-            FSK {movieCertifications[0].certification}
-            <ReactTooltip effect="solid" place="bottom" />
-        </span>
+        <div className={`MovieCertification ${props.className ? props.className : ''}`} data-tip={movieCertifications[0].meaning}>
+            <span className="btn u-btn-outline-black rounded">FSK {movieCertifications[0].certification}
+                <ReactTooltip effect="solid" place="bottom" /></span>
+        </div>
 
     )
 }
