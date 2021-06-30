@@ -12,19 +12,19 @@ import GenreList from './commons/GenreList';
 import FavoriteButton from './commons/FavoriteButton';
 import CreditList from './commons/CreditList';
 import LoadImage from './helper/LoadImage';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function MovieDetails(): ReactElement {
+
+
 
     const { dispatch, store } = useStore();
     const params = useParams<{ id: string }>();
     const [movie, setMovie] = useMovieApi<Movie>("get", `movie/${params.id}`);
+    useDocumentTitle(movie?.title)
 
     if (!movie) {
         return <LoadingSpinner />
-    }
-
-    const onAddToFavorites = () => {
-        dispatch({ type: "ADD_TO_FAVORITES", movie })
     }
 
     return (

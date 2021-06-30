@@ -4,8 +4,11 @@ import LoadingSpinner from './LoadingSpinner';
 import Popular from '../types/Popular';
 import ResultListItem from './ResultListItem';
 import Panel from './commons/Panel';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function PopularList(): ReactElement {
+
+    useDocumentTitle("Beliebte Filme")
 
     const [movies, setMovies] = useMovieApi<Popular>("get", "movie/popular");
 

@@ -5,10 +5,13 @@ import FavoriteButton from './commons/FavoriteButton';
 import GenreList from './commons/GenreList';
 import MovieImage from './helper/LoadImage';
 import Panel from './commons/Panel'
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function Favorites(): ReactElement {
 
     const { dispatch, store } = useStore();
+
+    useDocumentTitle("Favoriten")
 
     return (
         <Panel className="g-pa-30">
