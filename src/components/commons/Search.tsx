@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import useMovieApi from '../../hooks/useMovieApi';
 import MovieApi from '../../shared/MovieApi';
@@ -7,6 +7,7 @@ import LoadImage from '../helper/LoadImage';
 import RatingStars from './RatingStars';
 import defaultImg from "../../assets/img/default/person_2-3.svg";
 import "./Search.scss";
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 interface SearchResult {
     page: number,
@@ -24,6 +25,7 @@ interface Genres {
     ]
 }
 
+
 export default function Search(): ReactElement {
 
     const [search, setSearch] = useState<string>('');
@@ -31,9 +33,11 @@ export default function Search(): ReactElement {
 
     const [genres, setGenres] = useMovieApi<Genres>("get", "genre/movie/list");
 
+    const [isOpen, setIsOpen] = useState(false);
 
     const onSearch = (search: string) => {
         setSearch(search)
+        setIsOpen(true)
         const searchEscaped = search.trim()
         if (searchEscaped.length > 3) {
             MovieApi<SearchResult>('get', `search/movie/?query=${searchEscaped}`, setSearchResults)
@@ -49,11 +53,6 @@ export default function Search(): ReactElement {
     }
 
 
-    const onClick = () => {
-        setSearchResults(undefined)
-        //setSearch('') onFocus={onFocus}
-    };
-
     function resolveGenre(genreId: number): string | null {
         if (genres !== undefined) {
             const genre = genres.genres.filter(e => e.id === genreId)
@@ -62,39 +61,37 @@ export default function Search(): ReactElement {
         return null;
     }
 
-    function onHideResults() {
-        const panel = document.getElementById('results');
-        if (panel) {
-            panel.classList.remove("visible")
-        }
-    }
 
-    function onShowResults() {
-        const panel = document.getElementById('results');
-        if (panel) {
-            panel.classList.add("visible")
-        }
+    const ref = useRef(null)
+    const handleClickOutside = () => {
+        setIsOpen(false)
+        console.log('clicked outside')
     }
-
+    const handleClickInside = () => {
+        setIsOpen(true)
+        console.log('clicked inside')
+    }
+    useOnClickOutside(ref, handleClickOutside)
 
     return (
 
-        <div className="Search">
-            <input value={search} onBlur={onHideResults} onFocus={onShowResults} onChange={(e) => onSearch(e.target.value)} type="text" className="form-control u-shadow-v19 g-brd-none g-bg-white g-font-size-16 g-rounded-30 g-px-30 g-py-13 g-mb-30" placeholder="Schnellsuche …" />
+        <div className="Search" ref={ref}>
 
-            {searchResults && searchResults.results.length === 0
+            <input value={search} onFocus={handleClickInside} onChange={(e) => onSearch(e.target.value)} type="text" className="form-control u-shadow-v19 g-brd-none g-bg-white g-font-size-16 g-rounded-30 g-px-30 g-py-13 g-mb-30" placeholder="Schnellsuche …" />
+
+            {isOpen && searchResults && searchResults.results.length === 0
                 ? <div className="results visible">
                     <span className="result">Keine Filme gefunden</span>
                 </div>
                 : ''
             }
 
-            {searchResults && searchResults.results.length > 0
-                ? <div id="results" className="results visible">
+            {isOpen && searchResults && searchResults.results.length > 0
+                ? <div id="results" className="results visible" >
                     <div className="row no-gutters">
                         {searchResults.results.map(result =>
                             <div className="col-md-6" key={result.id}>
-                                <Link onClick={onClick} className="result" to={`/movie/${result.id}`}>
+                                <Link className="result" to={`/movie/${result.id}`}>
                                     <div className="g-width-100 float-left g-mr-30">
                                         <div className="aspect-ratio aspect-ratio-2-3">
                                             {result.poster_path
