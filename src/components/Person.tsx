@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useParams } from 'react-router-dom';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import useMovieApi from '../hooks/useMovieApi';
 import IPerson from "../types/Person"
 import Panel from './commons/Panel';
@@ -12,6 +13,7 @@ export default function Person(): ReactElement {
 
     const params = useParams<{ id: string }>();
     const [person, setPerson] = useMovieApi<IPerson>("get", `person/${params.id}`);
+    useDocumentTitle(person?.name)
 
     if (!person) return <LoadingSpinner />
 

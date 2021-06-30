@@ -8,7 +8,7 @@ interface Props {
 
 export default function Panel(props: Props): ReactElement {
     return (
-        <div className={`Panel g-pa-30 ${props.className}`}>
+        <div className={`Panel g-pa-30 ${props.className ? props.className : ''}`}>
             {props.children}
         </div>
     )

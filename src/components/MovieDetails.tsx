@@ -7,18 +7,15 @@ import Panel from './commons/Panel';
 import LoadingSpinner from './LoadingSpinner';
 import Keywords from './commons/Keywords';
 import ReleaseDates from './commons/ReleaseDates';
-import { useStore } from '../Store';
 import GenreList from './commons/GenreList';
 import FavoriteButton from './commons/FavoriteButton';
 import CreditList from './commons/CreditList';
 import LoadImage from './helper/LoadImage';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import RatingStars from './commons/RatingStars';
 
 export default function MovieDetails(): ReactElement {
 
-
-
-    const { dispatch, store } = useStore();
     const params = useParams<{ id: string }>();
     const [movie, setMovie] = useMovieApi<Movie>("get", `movie/${params.id}`);
     useDocumentTitle(movie?.title)
@@ -48,7 +45,7 @@ export default function MovieDetails(): ReactElement {
                         <div className="row mt-5">
                             <div className="col-md mb-2">
                                 <h6>Beliebtheit</h6>
-                                <p>{movie.vote_average} / 10</p>
+                                <RatingStars rating={movie.vote_average} />
                             </div>
                             <div className="col-md mb-2">
                                 <h6>Status</h6>
