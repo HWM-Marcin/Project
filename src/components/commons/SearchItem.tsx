@@ -33,7 +33,7 @@ export default function SearchItem(props: Props): ReactElement {
                             ? <LoadImage url={movie.poster_path} size="w92" />
                             : <img src={defaultImg} />
                         }
-                        <LoadImage url={movie.poster_path} size="w92" />
+                        <LoadImage url={movie.poster_path} size="w92" alt={movie.title} />
                     </div>
                 </div>
                 <div className="d-flex g-pt-15">
