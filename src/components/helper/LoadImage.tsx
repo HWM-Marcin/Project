@@ -17,7 +17,9 @@ export default function LoadImage(props: Props): ReactElement | null {
   if (!props.url) return null
 
   return (
+
     <img src={`${store.pageConfig.image_url}/${props.size}/${props.url}`} className={`img-fluid ${props.className}`} />
+
   )
 }
 
