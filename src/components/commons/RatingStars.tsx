@@ -25,18 +25,22 @@ export default function RatingStars(props: Props): ReactElement {
         arr.push('half')
     }
 
+    console.log(arr)
+
     return (
         <span className={`RatingStars ${props.className ? props.className : ''}`}>
-            {arr.map((e, i) => {
-                return (
-                    <React.Fragment key={i}>
-                        {e === 'full'
-                            ? <img src={starFull} height="15" />
-                            : <img src={starHalf} height="15" />
-                        }
-                    </React.Fragment>
-                )
-            })}
+            {arr.length > 0 ?
+                arr.map((e, i) => {
+                    return (
+                        <React.Fragment key={i}>
+                            {e === 'full'
+                                ? <img src={starFull} height="15" />
+                                : <img src={starHalf} height="15" />
+                            }
+                        </React.Fragment>
+                    )
+                }
+                ) : <p>nicht verfügbar</p>}
         </span>
     )
 }

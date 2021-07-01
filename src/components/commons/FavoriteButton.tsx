@@ -14,19 +14,19 @@ export default function FavoriteButton(props: Props): ReactElement | null {
 
     let alreadyAdded = false;
 
-    function removeFromFavorites(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    function removeMovieFromFavorites(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault()
-        dispatch({ type: "REMOVE_FROM_FAVORITES", movie })
+        dispatch({ type: "REMOVE_MOVIE_FROM_FAVORITES", movie })
     }
 
 
-    function addToFavorites() {
-        dispatch({ type: "ADD_TO_FAVORITES", movie })
+    function addMovieToFavorites() {
+        dispatch({ type: "ADD_MOVIE_TO_FAVORITES", movie })
     }
 
     function isAlreadyAdded() {
-        for (let i = 0; i < store.favorites.length; i++) {
-            if (store.favorites[i].id === movie.id) {
+        for (let i = 0; i < store.movieFavorites.length; i++) {
+            if (store.movieFavorites[i].id === movie.id) {
                 alreadyAdded = true
             }
         }
@@ -36,8 +36,8 @@ export default function FavoriteButton(props: Props): ReactElement | null {
     return (
         <div className={`FavoriteButton ${props.className ? props.className : ''}`}>
             {isAlreadyAdded()
-                ? <button className="btn u-btn-black rounded" onClick={e => removeFromFavorites(e)}>Film gemerkt</button>
-                : <button className="btn u-btn-outline-black rounded" onClick={addToFavorites}>Film merken</button>}
+                ? <button className="btn u-btn-black rounded" onClick={e => removeMovieFromFavorites(e)}>Film gemerkt</button>
+                : <button className="btn u-btn-outline-black rounded" onClick={addMovieToFavorites}>Film merken</button>}
         </div>
     )
 }

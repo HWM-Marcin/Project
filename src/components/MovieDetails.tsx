@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import useMovieApi from '../hooks/useMovieApi';
 import Movie from '../types/Movie';
@@ -19,6 +19,17 @@ export default function MovieDetails(): ReactElement {
     const params = useParams<{ id: string }>();
     const [movie, setMovie] = useMovieApi<Movie>("get", `movie/${params.id}`);
     useDocumentTitle(movie?.title)
+
+    const [textExpandabled, setTextExpandabled] = useState(false);
+
+    const formatCurrency = new Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0
+        // These options are needed to round to whole numbers if that's what you want.
+        // minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        // maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    });
 
     if (!movie) {
         return <LoadingSpinner />
@@ -41,7 +52,7 @@ export default function MovieDetails(): ReactElement {
                             </div>
                         </div>
                         <GenreList movie={movie} />
-                        <p>{movie.overview}</p>
+                        <p>{movie.overview ? movie.overview : 'Leider keine Beschreibung verfügbar.'}</p>
                         <div className="row mt-5">
                             <div className="col-md mb-2">
                                 <h6>Beliebtheit</h6>
@@ -57,11 +68,11 @@ export default function MovieDetails(): ReactElement {
                             </div>
                             <div className="col-md mb-2">
                                 <h6>Budget</h6>
-                                <p>{movie.budget} USD</p>
+                                <p>{movie.budget > 0 ? formatCurrency.format(movie.budget) : <p>nicht verfügbar</p>}</p>
                             </div>
                             <div className="col-md mb-2">
                                 <h6>Umsatz</h6>
-                                <p>{movie.revenue} USD</p>
+                                <p>{movie.revenue > 0 ? formatCurrency.format(movie.revenue) : <p>nicht verfügbar</p>}</p>
                             </div>
                         </div>
 

@@ -7,6 +7,8 @@ export default function Navigation(): ReactElement {
 
     const { dispatch, store } = useStore();
 
+    const countFavorites = store.movieFavorites.length + store.personFavorites.length
+
     return (
         <div className="Navigation">
             <header id="js-header" className="u-header u-header--static u-shadow-v19">
@@ -40,7 +42,7 @@ export default function Navigation(): ReactElement {
                                     <li className="nav-item g-ml-10--lg">
                                         <Link to="/favorites" className="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20">
                                             Favoriten
-                                            <span className="u-label g-bg-primary g-rounded-20 g-px-8 g-ml-10">{store.favorites.length}</span>
+                                            <span className="u-label g-bg-primary g-rounded-20 g-px-8 g-ml-10">{countFavorites}</span>
                                         </Link>
                                     </li>
                                 </ul>

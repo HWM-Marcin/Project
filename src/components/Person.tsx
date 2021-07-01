@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import useMovieApi from '../hooks/useMovieApi';
 import IPerson from "../types/Person"
+import FavoriteButtonPerson from './commons/FavoriteButtonPerson';
 import Panel from './commons/Panel';
 import LoadImage from './helper/LoadImage';
 import LoadingSpinner from './LoadingSpinner';
@@ -44,6 +45,7 @@ export default function Person(): ReactElement {
                             <h1 className="mb-0">
                                 {person.name}
                             </h1>
+
                             <div className="g-pt-12">
                                 {person.gender === 2
                                     ? <span className="g-font-size-12 u-label g-bg-bluegray g-font-weight-600 g-rounded-20 g-px-8 g-py-5 g-ml-15"><i className="icon-symbol-male"></i></span>
@@ -56,6 +58,9 @@ export default function Person(): ReactElement {
                                     : null
                                 }
                             </div>
+
+                            <FavoriteButtonPerson person={person} className="ml-auto g-pt-6" />
+
                         </div>
                         <h2 className="h5">Biografie</h2>
                         <p className="line-clamp-5">{person.biography ? person.biography : 'Leider keine Biografie vorhanden'}</p>

@@ -6,6 +6,7 @@ import GenreList from './commons/GenreList';
 import MovieImage from './helper/LoadImage';
 import Panel from './commons/Panel'
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import FavoriteButtonPerson from './commons/FavoriteButtonPerson';
 
 export default function Favorites(): ReactElement {
 
@@ -14,13 +15,18 @@ export default function Favorites(): ReactElement {
     useDocumentTitle("Favoriten")
 
     return (
-        <Panel className="g-pa-30">
-            <div>
-                <h1 className="h2 g-mb-30">Deine Favoriten</h1>
+        <>
+            <Panel className="g-pa-30 g-pb-10 g-mb-30">
+                <div className="d-flex">
+                    <h2 className="h3 g-mb-15"><i className="icon-film g-mr-5"></i> Filme</h2>
+                    <div>
+                        <span className="u-label g-bg-primary g-rounded-20 g-px-8 g-ml-10 g-mt-5">{store.movieFavorites.length}</span>
+                    </div>
+                </div>
                 <div className="row">
-                    {store.favorites.length === 0
+                    {store.movieFavorites.length === 0
                         ? <div className="col-md-12"><div className="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">Keine Filme gemerkt</div></div>
-                        : store.favorites.map((favorite, index) =>
+                        : store.movieFavorites.map((favorite, index) =>
                             <div className="col-md-6" key={index}>
                                 <div className="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
                                     <div className="g-max-width-100 g-mr-15">
@@ -38,7 +44,36 @@ export default function Favorites(): ReactElement {
                         )
                     }
                 </div>
-            </div>
-        </Panel>
+            </Panel>
+
+            <Panel className="g-pa-30 g-pb-10">
+                <div className="d-flex">
+                    <h2 className="h3 g-mb-15"><i className="icon-people g-mr-5"></i> Personen</h2>
+                    <div>
+                        <span className="u-label g-bg-primary g-rounded-20 g-px-8 g-ml-10 g-mt-5">{store.personFavorites.length}</span>
+                    </div>
+                </div>
+                <div className="row">
+                    {store.personFavorites.length === 0
+                        ? <div className="col-md-12"><div className="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">Keine Personen gemerkt</div></div>
+                        : store.personFavorites.map((favorite, index) =>
+                            <div className="col-md-6" key={index}>
+                                <div className="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
+                                    <div className="g-max-width-100 g-mr-15">
+                                        <MovieImage url={favorite.profile_path} size="h632" className="d-flex w-100" />
+                                    </div>
+                                    <div className="media-body align-self-center">
+                                        <h4 className="h4 g-mb-7">
+                                            <Link to={`/movie/${favorite.id}`} className="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">{favorite.name}</Link>
+                                        </h4>
+                                        <FavoriteButtonPerson person={favorite} />
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+            </Panel>
+        </>
     )
 }

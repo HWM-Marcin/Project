@@ -2,11 +2,12 @@ import React, { useContext, useReducer } from 'react';
 import { ReactElement } from 'react';
 import Movie from './types/Movie';
 import PageConfig from "./types/PageConfig"
+import Person from './types/Person';
 
 export interface Store {
     pageConfig: PageConfig,
-    favorites: Movie[]
-
+    movieFavorites: Movie[],
+    personFavorites: Person[]
 }
 
 export const initialStore: Store = {
@@ -14,37 +15,49 @@ export const initialStore: Store = {
         image_url: "https://image.tmdb.org/t/p",
         certificationArea: "DE"
     },
-    favorites: [],
+    movieFavorites: [],
+    personFavorites: []
 }
 
-interface addToFavorites {
-    type: 'ADD_TO_FAVORITES',
+interface addMovieToFavorites {
+    type: 'ADD_MOVIE_TO_FAVORITES',
     movie: Movie
 }
 
-interface removeFromFavorites {
-    type: 'REMOVE_FROM_FAVORITES',
+interface removeMovieFromFavorites {
+    type: 'REMOVE_MOVIE_FROM_FAVORITES',
     movie: Movie
 }
 
-type Actions = addToFavorites | removeFromFavorites;
+interface addPersonToFavorites {
+    type: 'ADD_PERSON_TO_FAVORITES',
+    person: Person
+}
+
+interface removePersonFromFavorites {
+    type: 'REMOVE_PERSON_FROM_FAVORITES',
+    person: Person
+}
+
+type Actions = addMovieToFavorites | removeMovieFromFavorites | addPersonToFavorites | removePersonFromFavorites;
 
 export type dispatchActions = React.Dispatch<Actions>
 
 export function reducer(store: Store, action: Actions): Store {
     switch (action.type) {
-        case 'ADD_TO_FAVORITES': {
-            /* for (let i = 0; i < store.favorites.length; i++) {
-                if (store.favorites[i] === action.movie) {
-                    return store;
-                }
-            } */
-            return { ...store, favorites: [...store.favorites, action.movie] };
-
+        case 'ADD_MOVIE_TO_FAVORITES': {
+            return { ...store, movieFavorites: [...store.movieFavorites, action.movie] };
         }
-        case 'REMOVE_FROM_FAVORITES': {
-            const index = store.favorites.map(movie => movie.id).indexOf(action.movie.id)
-            return { ...store, favorites: store.favorites.filter((_movie, i) => i !== index) };
+        case 'REMOVE_MOVIE_FROM_FAVORITES': {
+            const index = store.movieFavorites.map(movie => movie.id).indexOf(action.movie.id)
+            return { ...store, movieFavorites: store.movieFavorites.filter((_movie, i) => i !== index) };
+        }
+        case 'ADD_PERSON_TO_FAVORITES': {
+            return { ...store, personFavorites: [...store.personFavorites, action.person] };
+        }
+        case 'REMOVE_PERSON_FROM_FAVORITES': {
+            const index = store.personFavorites.map(person => person.id).indexOf(action.person.id)
+            return { ...store, personFavorites: store.personFavorites.filter((_person, i) => i !== index) };
         }
         default:
             return store;
