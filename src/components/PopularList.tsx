@@ -6,6 +6,8 @@ import ResultListItem from './ResultListItem';
 import Panel from './commons/Panel';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import Search from './commons/Search';
+import Tabs from './commons/Tabs';
+import TabPanel from './commons/TabPanel';
 
 export default function PopularList(): ReactElement {
 
@@ -17,12 +19,12 @@ export default function PopularList(): ReactElement {
         return <LoadingSpinner />
     }
 
+
+
     return (
         <div className="Popular">
 
-
             <Search />
-
 
             <Panel>
                 <h2 className="h3 g-mb-30">Aktuell beliebte Filme</h2>
