@@ -68,11 +68,11 @@ export default function MovieDetails(): ReactElement {
                             </div>
                             <div className="col-md mb-2">
                                 <h6>Budget</h6>
-                                <p>{movie.budget > 0 ? formatCurrency.format(movie.budget) : <p>nicht verfügbar</p>}</p>
+                                <p>{movie.budget > 0 ? formatCurrency.format(movie.budget) : "nicht verfügbar"}</p>
                             </div>
                             <div className="col-md mb-2">
                                 <h6>Umsatz</h6>
-                                <p>{movie.revenue > 0 ? formatCurrency.format(movie.revenue) : <p>nicht verfügbar</p>}</p>
+                                <p>{movie.revenue > 0 ? formatCurrency.format(movie.revenue) : "nicht verfügbar"}</p>
                             </div>
                         </div>
 

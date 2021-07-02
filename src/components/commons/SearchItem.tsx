@@ -14,7 +14,7 @@ interface Props {
 export default function SearchItem(props: Props): ReactElement {
 
     const movie = props.movie;
-    const [genres, setGenres] = useMovieApi<Genres>("get", "genre/movie/list");
+    const [genres] = useMovieApi<Genres>("get", "genre/movie/list");
 
     function resolveGenre(genreId: number): string | null {
         if (genres !== undefined) {

@@ -25,8 +25,6 @@ export default function RatingStars(props: Props): ReactElement {
         arr.push('half')
     }
 
-    console.log(arr)
-
     return (
         <span className={`RatingStars ${props.className ? props.className : ''}`}>
             {arr.length > 0 ?

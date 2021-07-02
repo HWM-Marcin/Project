@@ -28,8 +28,6 @@ export default function Search(): ReactElement {
     const [search, setSearch] = useState<string>('');
     const [searchResults, setSearchResults] = useState<SearchResult>();
 
-    const [genres, setGenres] = useMovieApi<Genres>("get", "genre/movie/list");
-
     const [isOpen, setIsOpen] = useState(false);
 
     const onSearch = (search: string) => {

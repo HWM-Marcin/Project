@@ -13,8 +13,6 @@ export default function PersonMovieCredits(props: Props): ReactElement {
 
     const [movies, setMovies] = useMovieApi<PersonMovieCredit>("get", `person/${props.personId}/movie_credits`);
 
-    console.log(movies)
-
     if (!movies) return <LoadingSpinner />
 
     return (

@@ -26,8 +26,8 @@ export default function CreditList(props: Props): ReactElement | null {
                 <div className="CreditList">
                     {props.title ? <h2 className="h3 g-mb-30">{props.title}</h2> : null}
                     <div className="row">
-                        {credits.cast.map(credit =>
-                            <React.Fragment key={credit.id}>
+                        {credits.cast.map((credit, index) =>
+                            <React.Fragment key={index}>
                                 <CreditListItem credit={credit} className="col-md-2 g-mb-30" />
                             </React.Fragment>
                         )}

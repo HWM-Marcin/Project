@@ -5,7 +5,7 @@ type AnyEvent = MouseEvent | TouchEvent
 function useOnClickOutside<T extends HTMLElement = HTMLElement>(
     ref: RefObject<T>,
     handler: (event: AnyEvent) => void,
-): any {
+): void | Document {
     useEffect(() => {
         const listener = (event: AnyEvent) => {
             const el = ref?.current

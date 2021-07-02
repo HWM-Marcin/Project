@@ -6,8 +6,6 @@ import ResultListItem from './ResultListItem';
 import Panel from './commons/Panel';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import Search from './commons/Search';
-import Tabs from './commons/Tabs';
-import TabPanel from './commons/TabPanel';
 
 export default function PopularList(): ReactElement {
 
