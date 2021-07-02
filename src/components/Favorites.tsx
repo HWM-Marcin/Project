@@ -67,7 +67,7 @@ export default function Favorites(): ReactElement {
                                         </div>
                                         <div className="media-body align-self-center">
                                             <h4 className="h4 g-mb-7">
-                                                <Link to={`/movie/${favorite.id}`} className="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">{favorite.name}</Link>
+                                                <Link to={`/person/${favorite.id}`} className="g-color-black g-color-primary--hover g-text-underline--none--hover" href="#">{favorite.name}</Link>
                                             </h4>
                                             <FavoriteButtonPerson person={favorite} />
                                         </div>

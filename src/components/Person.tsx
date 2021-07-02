@@ -38,7 +38,7 @@ export default function Person(): ReactElement {
             <Panel className="g-mb-15">
                 <div className="row">
                     <div className="col-md-4 col-lg-3">
-                        <LoadImage url={person.profile_path} size="h632" />
+                        <LoadImage url={person.profile_path} size="h632" ratio="aspect-ratio-2-3" />
                     </div>
                     <div className="col-md-8 col-lg-9 g-px-80--lg g-mb-40 g-mb-0--md pt-5">
                         <div className="d-flex g-mb-30">
