@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-import { useStore } from '../../Store'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import defaultImg from "../../assets/img/default/person_2-3.svg";
 
@@ -17,16 +16,12 @@ interface Props {
 
 export default function LoadImage(props: Props): ReactElement | null {
 
-  const { dispatch, store } = useStore()
-
-  if (!props.url) return null
-
   return (
 
-    <LazyLoadImage
+    <LazyLoadImage wrapperClassName="d-block"
       alt={props.alt ? props.alt : ''}
-      src={`${store.pageConfig.image_url}/${props.size}/${props.url}`}
-      className={`img-fluid ${props.className}`}
+      src={`${process.env.REACT_APP_IMAGE_URL}/${props.size}/${props.url}`}
+      className={`img-fluid ${props.className ? props.className : ''}`}
       effect="opacity"
       threshold={400}
       placeholderSrc={defaultImg}

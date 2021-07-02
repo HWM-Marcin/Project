@@ -1,5 +1,3 @@
-# API KEY https://api.themoviedb.org/:  af3815aff7ba2b7007750f5ddfe7b68a
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

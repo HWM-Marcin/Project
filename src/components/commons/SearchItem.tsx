@@ -8,13 +8,14 @@ import defaultImg from "../../assets/img/default/person_2-3.svg";
 import Genres from '../../types/Genres';
 
 interface Props {
-    movie: Result
+    movie: Result,
+    genres: Genres
 }
 
 export default function SearchItem(props: Props): ReactElement {
 
     const movie = props.movie;
-    const [genres] = useMovieApi<Genres>("get", "genre/movie/list");
+    const genres = props.genres;
 
     function resolveGenre(genreId: number): string | null {
         if (genres !== undefined) {

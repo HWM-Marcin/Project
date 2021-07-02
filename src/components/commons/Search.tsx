@@ -5,6 +5,8 @@ import Result from '../../types/Result';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import SearchItem from './SearchItem';
 import "./Search.scss";
+import Genres from '../../types/Genres';
+import LoadingSpinner from '../LoadingSpinner';
 
 interface SearchResult {
     page: number,
@@ -13,20 +15,12 @@ interface SearchResult {
     total_pages: number
 }
 
-interface Genres {
-    genres: [
-        {
-            id: number,
-            name: string
-        }
-    ]
-}
-
 
 export default function Search(): ReactElement {
 
     const [search, setSearch] = useState<string>('');
     const [searchResults, setSearchResults] = useState<SearchResult>();
+    const [genres] = useMovieApi<Genres>("get", "genre/movie/list");
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -52,6 +46,8 @@ export default function Search(): ReactElement {
     }
     useOnClickOutside(ref, handleClickOutside)
 
+    if (!genres) return <LoadingSpinner />
+
     return (
 
         <div className="Search" ref={ref}>
@@ -70,7 +66,7 @@ export default function Search(): ReactElement {
                     <div className="row no-gutters">
                         {searchResults.results.map(result =>
                             <div className="col-md-6" key={result.id}>
-                                <SearchItem movie={result} />
+                                <SearchItem movie={result} genres={genres} />
                             </div>
                         )}
                     </div>

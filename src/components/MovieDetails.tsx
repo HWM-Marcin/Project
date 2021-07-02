@@ -20,8 +20,8 @@ export default function MovieDetails(): ReactElement {
     const [movie, setMovie] = useMovieApi<Movie>("get", `movie/${params.id}`);
     useDocumentTitle(movie?.title)
 
-    const [textExpandabled, setTextExpandabled] = useState(false);
-
+    /*     const [textExpandabled, setTextExpandabled] = useState(false);
+     */
     const formatCurrency = new Intl.NumberFormat('de-DE', {
         style: 'currency',
         currency: 'USD',
