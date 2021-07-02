@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../Store';
 import FavoriteButton from './commons/FavoriteButton';
 import GenreList from './commons/GenreList';
-import MovieImage from './helper/LoadImage';
-import Panel from './commons/Panel'
+import LoadImage from './helper/LoadImage';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import FavoriteButtonPerson from './commons/FavoriteButtonPerson';
 import Tabs from './commons/Tabs';
@@ -32,8 +31,8 @@ export default function Favorites(): ReactElement {
                             : store.movieFavorites.map((favorite, index) =>
                                 <div className="col-md-6" key={index}>
                                     <div className="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-                                        <div className="g-max-width-100 g-mr-15">
-                                            <MovieImage url={favorite.poster_path} size="h632" className="d-flex w-100" />
+                                        <div className="g-width-120 g-mr-15">
+                                            <LoadImage url={favorite.poster_path} size="h632" className="d-flex w-100" ratio="aspect-ratio-2-3" />
                                         </div>
                                         <div className="media-body align-self-center">
                                             <h4 className="h4 g-mb-7">
@@ -63,8 +62,8 @@ export default function Favorites(): ReactElement {
                             : store.personFavorites.map((favorite, index) =>
                                 <div className="col-md-6" key={index}>
                                     <div className="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
-                                        <div className="g-max-width-100 g-mr-15">
-                                            <MovieImage url={favorite.profile_path} size="h632" className="d-flex w-100" />
+                                        <div className="g-width-120 g-mr-15">
+                                            <LoadImage url={favorite.profile_path} size="h632" className="d-flex w-100" ratio="aspect-ratio-2-3" />
                                         </div>
                                         <div className="media-body align-self-center">
                                             <h4 className="h4 g-mb-7">

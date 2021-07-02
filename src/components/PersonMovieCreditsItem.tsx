@@ -15,11 +15,9 @@ export default function PersonMovieCreditsItem(props: Props): ReactElement {
 
     return (
         <article className="PersonMovieCreditsItem col-sm-6 col-md-4 col-lg-3 g-px-10 g-mb-30">
-            <div className="aspect-ratio aspect-ratio-2-3">
-                <Link to={`/movie/${movie.id}`}>
-                    <LoadImage url={movie.poster_path} size={'h632'} className="rounded" />
-                </Link>
-            </div>
+            <Link to={`/movie/${movie.id}`}>
+                <LoadImage url={movie.poster_path} size={'h632'} className="rounded" ratio="aspect-ratio-2-3" />
+            </Link>
             <h4 className="h6 g-color-black mt-2">
                 <Link className="u-link-v5 g-color-black g-color-primary--hover" to={`/movie/${movie.id}`}>{movie.title}</Link>
             </h4>
