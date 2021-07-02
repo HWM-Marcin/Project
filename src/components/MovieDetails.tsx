@@ -41,7 +41,7 @@ export default function MovieDetails(): ReactElement {
             <Panel className="g-mb-15">
                 <div className="row">
                     <div className="col-md-4 col-lg-4">
-                        <LoadImage url={movie.poster_path} size="h632" />
+                        <LoadImage url={movie.poster_path} size="h632" ratio="aspect-ratio-2-3" />
                     </div>
                     <div className="col-md-8 col-lg-8 pt-5">
                         <div className="d-flex mb-2">

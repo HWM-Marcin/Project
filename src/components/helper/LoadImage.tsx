@@ -10,22 +10,28 @@ interface Props {
   url: string | undefined | null,
   className?: string,
   alt?: string,
+  ratio?: Ratio
 
 }
+
+type Ratio = "aspect-ratio-2-3"
 
 
 export default function LoadImage(props: Props): ReactElement | null {
 
   return (
 
-    <LazyLoadImage wrapperClassName="d-block"
-      alt={props.alt ? props.alt : ''}
-      src={`${process.env.REACT_APP_IMAGE_URL}/${props.size}/${props.url}`}
-      className={`img-fluid ${props.className ? props.className : ''}`}
-      effect="opacity"
-      threshold={400}
-      placeholderSrc={defaultImg}
-    />
+    <div className={`LoadImage aspect-ratio ${props.ratio ? props.ratio : ''}`}>
+
+      <LazyLoadImage wrapperClassName="d-block"
+        alt={props.alt ? props.alt : ''}
+        src={props.url ? `${process.env.REACT_APP_IMAGE_URL}/${props.size}/${props.url}` : defaultImg}
+        className={`img-fluid ${props.className ? props.className : ''}`}
+        effect="opacity"
+        threshold={400}
+        placeholderSrc={defaultImg}
+      />
+    </div>
 
   )
 }

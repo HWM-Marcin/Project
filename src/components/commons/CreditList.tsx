@@ -14,7 +14,7 @@ interface Credit {
 
 export default function CreditList(props: Props): ReactElement | null {
 
-    const [credits, setCredits] = useMovieApi<Credit>("get", `movie/${props.movieId}/credits`);
+    const [credits] = useMovieApi<Credit>("get", `movie/${props.movieId}/credits`);
 
     if (!credits) return null;
 

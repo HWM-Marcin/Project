@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom';
-import useMovieApi from '../../hooks/useMovieApi';
 import Result from '../../types/Result';
 import LoadImage from '../helper/LoadImage';
 import RatingStars from './RatingStars';
@@ -29,13 +28,7 @@ export default function SearchItem(props: Props): ReactElement {
         <div className="SearchItem">
             <Link className="result" to={`/movie/${movie.id}`}>
                 <div className="g-width-100 float-left g-mr-30">
-                    <div className="aspect-ratio aspect-ratio-2-3">
-                        {movie.poster_path
-                            ? <LoadImage url={movie.poster_path} size="w92" />
-                            : <img src={defaultImg} />
-                        }
-                        <LoadImage url={movie.poster_path} size="w92" alt={movie.title} />
-                    </div>
+                    <LoadImage url={movie.poster_path} size="w92" ratio="aspect-ratio-2-3" />
                 </div>
                 <div className="d-flex g-pt-15">
                     <h4 className="h6 g-color-black g-mt-2">{movie.title}</h4>
