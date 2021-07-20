@@ -45,6 +45,9 @@ export default function Navigation(): ReactElement {
                                             <span className="u-label g-bg-primary g-rounded-20 g-px-8 g-ml-10">{countFavorites}</span>
                                         </Link>
                                     </li>
+                                    <li className="nav-item g-ml-15--xl">
+                                        <Link to="/playground" className="nav-link text-uppercase g-color-primary--hover g-pl-5 g-pr-0 g-py-20">Playground</Link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
